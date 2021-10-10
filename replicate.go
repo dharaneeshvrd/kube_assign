@@ -125,6 +125,11 @@ func (kube KubeClient) replicatePods() {
 
 	for podIndex := range pods.Items {
 		pod := pods.Items[podIndex]
+
+		if string(pod.Status.Phase) != "Running" {
+			continue
+		}
+
 		fmt.Printf("Replicating %v\n", pod.Name)
 		var newPod v1.Pod
 		configMapToReplicate := make([]string, 0)
