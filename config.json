@@ -1,0 +1,6 @@
+{
+    "sourceKubeConfFile": "C:\\Users\\dhara\\.kube",
+    "targetKubeConfFile":"C:\\Users\\dhara\\.kube",
+    "sourceNamespace": "default", 
+    "targetNamespace": "assignment"
+}
