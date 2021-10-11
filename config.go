@@ -4,11 +4,9 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
-	"path/filepath"
 
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/tools/clientcmd"
-	"k8s.io/client-go/util/homedir"
 )
 
 type Config struct {
@@ -26,13 +24,14 @@ type KubeClient struct {
 }
 
 func (kube *KubeClient) initKubeClient(confFile string, clientType string) {
-	//kubeConfigS := flag.String("kubeconfig", "", kubeConfFile)
-	//flag.Parse()
-	var kubeconfigS string
-	if home := homedir.HomeDir(); home != "" {
-		kubeconfigS = filepath.Join(home, ".kube", "config")
-	}
-	kubeConfig, _ := clientcmd.BuildConfigFromFlags("", kubeconfigS)
+	/*
+		var kubeconfigS string
+		if home := homedir.HomeDir(); home != "" {
+			kubeconfigS = filepath.Join(home, ".kube", "config")
+		}
+	*/
+
+	kubeConfig, _ := clientcmd.BuildConfigFromFlags("", confFile)
 
 	var err error
 	switch clientType {
