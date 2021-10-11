@@ -31,9 +31,11 @@ func (kube *KubeClient) initKubeClient(confFile string, clientType string) {
 		}
 	*/
 
-	kubeConfig, _ := clientcmd.BuildConfigFromFlags("", confFile)
-
-	var err error
+	fmt.Println(confFile)
+	kubeConfig, err := clientcmd.BuildConfigFromFlags("", confFile)
+	if err != nil {
+		fmt.Println(err)
+	}
 	switch clientType {
 	case "source":
 		kube.SourceClient, err = kubernetes.NewForConfig(kubeConfig)
